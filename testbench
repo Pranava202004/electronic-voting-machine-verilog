@@ -1,0 +1,63 @@
+module vote_tb_64_61_v;
+// Inputs
+reg clk;
+reg rst;
+reg i_candidate_1;
+reg i_candidate_2;
+reg i_candidate_3;
+reg s_r;
+// Outputs
+wire result;
+wire [31:0] diff;
+wire val;
+wire [1:0] winner;
+wire [1:0] runner;
+wire [31:0] o_count1;
+wire [31:0] o_count2;
+wire [31:0] o_count3;
+
+// Instantiate the Unit Under Test (UUT)
+new_vm uut (
+.clk(clk),
+.rst(rst),
+.i_candidate_1(i_candidate_1),
+.i_candidate_2(i_candidate_2),
+.i_candidate_3(i_candidate_3),
+.s_r(s_r),
+.result(result),
+.diff(diff),
+.val(val),
+.winner(winner),
+.runner(runner),
+.o_count1(o_count1),
+.o_count2(o_count2),
+.o_count3(o_count3)
+);
+initial begin
+// Initialize Inputs
+clk = 1;
+rst = 1; i_candidate_1 = 0; i_candidate_2 = 0; i_candidate_3 = 0; s_r =
+0; #50;
+rst = 0; i_candidate_1 = 1; i_candidate_2 = 0; i_candidate_3 = 0; s_r =
+0; #50;
+rst = 0; i_candidate_1 = 1; i_candidate_2 = 0; i_candidate_3 = 0; s_r =
+0; #50;
+rst = 0; i_candidate_1 = 1; i_candidate_2 = 0; i_candidate_3 = 0; s_r =
+0; #50;
+rst = 0; i_candidate_1 = 0; i_candidate_2 = 1; i_candidate_3 = 0; s_r =
+0; #50;
+rst = 0; i_candidate_1 = 1; i_candidate_2 = 0; i_candidate_3 = 0; s_r =
+0; #50;
+rst = 0; i_candidate_1 = 0; i_candidate_2 = 1; i_candidate_3 = 0; s_r =
+0; #50;
+rst = 0; i_candidate_1 = 0; i_candidate_2 = 1; i_candidate_3 = 0; s_r =
+0; #50;
+rst = 0; i_candidate_1 = 0; i_candidate_2 = 1; i_candidate_3 = 0; s_r =
+0; #50;
+rst = 0; i_candidate_1 = 0; i_candidate_2 = 0; i_candidate_3 = 1; s_r =
+0; #50;
+rst = 0; i_candidate_1 = 0; i_candidate_2 = 0; i_candidate_3 = 1; s_r =
+0; #50;
+s_r = 1;
+end always #25 clk=~clk;
+endmodule
