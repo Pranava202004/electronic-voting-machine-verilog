@@ -1,0 +1,60 @@
+module check_single_vote(
+input a,
+input b,
+input c,
+output reg is_valid_vote
+);
+always @* begin
+if ((a && !b && !c) || (!a && b && !c) || (!a && !b && c))
+is_valid_vote = 1;
+else
+is_valid_vote = 0;
+end
+endmodule
+
+module find_greatest(
+input [31:0] num1,
+input [31:0] num2,
+input [31:0] num3,
+output reg [1:0] greatest,
+output reg [1:0] second_greatest,
+output reg [31:0] difference
+);
+always @* begin
+if (num1 >= num2 && num1 >= num3) begin
+greatest = 2'b01;
+if (num2 >= num3) begin
+second_greatest = 2'b10;
+difference = num1 - num2;
+end
+else begin
+second_greatest = 2'b11;
+difference = num1 - num3;
+end
+
+end
+else if (num2 >= num1 && num2 >= num3) begin
+greatest = 2'b10;
+if (num1 >= num3) begin
+second_greatest = 2'b01;
+difference = num2 - num1;
+end
+else begin
+second_greatest = 2'b11;
+difference = num2 - num3;
+end
+end
+else begin
+greatest = 2'b11;
+if (num1 >= num2) begin
+second_greatest = 2'b01;
+difference = num3 - num1;
+end
+else begin
+second_greatest = 2'b10;
+difference = num3 - num2;
+end
+end
+end
+
+endmodule
